@@ -8,249 +8,358 @@
   html, body { width:1024px; height:1024px; background:#f6f1e7; }
   body {
     font-family:'Liberation Serif', 'Noto Serif', Georgia, serif;
-    color:#141414; padding:12px 30px 8px;
+    color:#141414; padding:9px 24px 8px;
   }
-  /* ---------- masthead ---------- */
-  .mast { text-align:center; border-bottom:4px solid #141414; padding-bottom:8px; }
-  .mast h1 { font-size:54px; line-height:1; letter-spacing:1px; font-weight:900; }
-  .mast .sub { display:flex; justify-content:space-between; margin-top:8px;
-    font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:14px; font-weight:700;
-    letter-spacing:2px; text-transform:uppercase; }
-  .mast .sub .red { color:#b91c1c; }
-  .rule-red { height:3px; background:#b91c1c; margin:6px 0 0; }
-  /* ---------- generic story ---------- */
-  .kicker { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:12.5px;
-    font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#b91c1c; }
+  .sans { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; }
+  .kicker { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:11px;
+    font-weight:700; letter-spacing:2.2px; text-transform:uppercase; color:#b91c1c; }
   .kicker .tag { color:#141414; }
   h2 { font-weight:900; line-height:1.02; }
-  .deck { font-size:15.5px; line-height:1.35; }
-  .fact { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:13px; line-height:1.4; }
-  .fact b { color:#b91c1c; }
-  /* ---------- lead ---------- */
-  .lead { display:flex; gap:22px; padding:8px 0 6px; border-bottom:2px solid #141414; }
-  .lead .txt { width:52%; }
-  .lead h2 { font-size:47px; margin:5px 0 6px; }
-  .lead .deck { font-size:16.5px; }
-  .lead .facts { margin-top:8px; border-top:1px solid #999; padding-top:6px; }
-  .lead .art { width:48%; }
-  .lead .art svg { width:100%; height:auto; display:block; }
-  .artcap { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:11.5px;
-    color:#555; margin-top:4px; font-style:italic; }
-  /* ---------- row 2 ---------- */
-  .row2 { display:flex; gap:22px; padding:7px 0; border-bottom:2px solid #141414; }
-  .row2 .story { width:50%; }
-  .row2 .story:first-child { border-right:1px solid #999; padding-right:22px; }
-  .row2 h2 { font-size:27px; margin:5px 0 6px; }
-  .row2 .art { margin-top:8px; }
-  .row2 .art svg { width:100%; height:64px; display:block; }
-  /* ---------- row 3 ---------- */
-  .row3 { display:flex; gap:0; padding:7px 0 5px; border-bottom:2px solid #141414; }
-  .row3 .story { width:33.33%; padding:0 14px; }
-  .row3 .story + .story { border-left:1px solid #999; }
-  .row3 .story:first-child { padding-left:0; }
-  .row3 .story:last-child { padding-right:0; }
-  .row3 h2 { font-size:23px; margin:5px 0 6px; }
-  .row3 .deck { font-size:14px; }
-  .row3 .art { margin-top:8px; }
-  .row3 .art svg { width:100%; height:48px; display:block; }
+  .deck { font-size:13px; line-height:1.32; }
+  .down { color:#b91c1c; }
+  .up { color:#1e7d32; }
   .bignum { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-weight:900; }
-  /* ---------- also today ---------- */
-  .also { padding:8px 0 6px; }
-  .also h3 { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:13px;
-    letter-spacing:3px; color:#b91c1c; margin-bottom:6px; }
-  .also p { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:13.5px;
-    line-height:1.5; }
-  .also b { color:#141414; }
-  .also .dot { color:#b91c1c; font-weight:900; }
+
+  /* ---------- topline + masthead (left-aligned, with contents box) ---------- */
+  .topline { display:flex; justify-content:space-between;
+    font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:2.2px; text-transform:uppercase; padding:2px 0 5px;
+    border-top:2px solid #141414; }
+  .mast { display:flex; justify-content:space-between; align-items:flex-end; gap:18px; }
+  .mast h1 { font-size:46px; line-height:0.98; font-weight:900; letter-spacing:0.5px; white-space:nowrap; }
+  .mast h1 .thin { font-weight:400; }
+  .inbox { flex:none; width:252px; border:2px solid #141414; padding:6px 9px;
+    font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:11.5px; line-height:1.45; }
+  .inbox b { letter-spacing:2px; color:#b91c1c; }
+  .rule-double { border-top:4px solid #141414; border-bottom:1.5px solid #141414;
+    height:3px; margin:6px 0 0; }
+
+  /* ---------- slim ticker ---------- */
+  .ticker { display:flex; gap:8px; align-items:baseline; padding:4px 0 3px;
+    border-bottom:2px solid #141414;
+    font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:12.5px; line-height:1.35; }
+  .ticker .lbl { color:#b91c1c; font-weight:900; letter-spacing:2px; white-space:nowrap; }
+  .ticker b { color:#141414; }
+  .ticker .sep { color:#b91c1c; font-weight:900; }
+
+  /* ---------- lead row: lead 58% + second lead 42% ---------- */
+  .leadrow { display:flex; gap:0; padding:6px 0 5px; border-bottom:2px solid #141414; }
+  .lead { width:58%; padding-right:18px; }
+  .lead h2 { font-size:31px; margin:4px 0 5px; }
+  .lead .deck { font-size:14px; line-height:1.3; }
+  .lead .facts { margin-top:5px; border-top:1px solid #999; padding-top:4px;
+    font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:12.5px; line-height:1.35; }
+  .lead .facts b { color:#b91c1c; }
+  .lead .art { margin-top:6px; }
+  .lead .art svg { width:100%; height:44px; display:block; }
+  .second { width:42%; border-left:1px solid #999; padding-left:18px; }
+  .second h2 { font-size:23px; margin:4px 0 5px; }
+  .second .deck { font-size:13px; line-height:1.32; }
+  .second .art { margin-top:6px; }
+  .second .art svg { width:100%; height:44px; display:block; }
+
+  /* ---------- story grid: 2 rows x 3 cols ---------- */
+  .grid { padding:0; }
+  .grow { display:flex; gap:0; padding:6px 0 5px; border-bottom:2px solid #141414; }
+  .grow .cell { width:33.33%; padding:0 13px; }
+  .grow .cell + .cell { border-left:1px solid #999; }
+  .grow .cell:first-child { padding-left:0; }
+  .grow .cell:last-child { padding-right:0; }
+  .grow h2 { font-size:17.5px; margin:3px 0 4px; }
+  .grow .deck { font-size:12.5px; line-height:1.3; }
+  .grow .art { margin-top:5px; }
+  .grow .art svg { width:100%; height:20px; display:block; }
+
+  /* ---------- briefs + sports strips ---------- */
+  .strip { padding:5px 0 4px; border-bottom:2px solid #141414; }
+  .strip h3 { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:12px;
+    letter-spacing:3px; color:#b91c1c; margin-bottom:4px; }
+  .strip p { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:12.5px; line-height:1.45; }
+  .strip b { color:#141414; }
+  .strip .dot { color:#b91c1c; font-weight:900; }
+
+  /* ---------- markets / crypto / weather band ---------- */
+  .band { display:flex; gap:0; padding:6px 0 5px; border-bottom:2px solid #141414; }
+  .band .col { width:33.33%; padding:0 14px; }
+  .band .col + .col { border-left:1px solid #999; }
+  .band .col:first-child { padding-left:0; }
+  .band .col:last-child { padding-right:0; }
+  .band h3 { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:12px;
+    letter-spacing:2.5px; color:#b91c1c; margin-bottom:3px; }
+  .band h3 .tag { color:#141414; letter-spacing:1px; font-size:10.5px; }
+  .mgrid { display:grid; grid-template-columns:1fr 1fr; gap:1px 12px; }
+  .mrow { display:flex; justify-content:space-between; font-family:'Liberation Sans','Noto Sans',Arial,sans-serif;
+    font-size:11px; line-height:1.45; white-space:nowrap; }
+  .mrow .nm { font-weight:700; }
+  .mrow .vl { font-weight:700; }
+  .mnote { font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:11px;
+    line-height:1.4; color:#444; margin-top:2px; }
+  .mnote b { color:#b91c1c; }
+  .spark { margin-top:4px; }
+  .spark svg { width:100%; height:18px; display:block; }
+  .wx { display:grid; grid-template-columns:1fr 1fr; gap:2px 10px; }
+  .wx .cell { display:flex; align-items:center; gap:5px;
+    font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:11.5px; line-height:1.35; }
+  .wx .cell svg { width:16px; height:16px; flex:none; }
+  .wx .cell b { font-weight:700; }
+
   /* ---------- footer ---------- */
-  .foot { border-top:3px solid #141414; padding-top:5px; display:flex; justify-content:space-between;
+  .foot { border-top:3px solid #141414; padding-top:5px; margin-top:6px; display:flex; justify-content:space-between;
     font-family:'Liberation Sans','Noto Sans',Arial,sans-serif; font-size:11px; color:#555; }
   .foot b { color:#141414; }
 </style>
 </head>
 <body>
 
-<div class="mast">
-  <h1>THE WORLD IN ONE PAGE</h1>
-  <div class="sub">
-    <span>Friday, 20 November 2026</span>
-    <span class="red">One day &middot; Six stories</span>
-    <span>Reported this morning</span>
-  </div>
-  <div class="rule-red"></div>
+<!-- weather icon symbols -->
+<svg width="0" height="0" style="position:absolute" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="w-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5" fill="#f2b234"/>
+      <g stroke="#f2b234" stroke-width="2"><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="4" y1="4" x2="6.5" y2="6.5"/><line x1="17.5" y1="17.5" x2="20" y2="20"/><line x1="20" y1="4" x2="17.5" y2="6.5"/><line x1="6.5" y1="17.5" x2="4" y2="20"/></g>
+    </symbol>
+    <symbol id="w-cloud" viewBox="0 0 24 24">
+      <g fill="#8a97a3"><ellipse cx="9" cy="15" rx="6" ry="4.5"/><ellipse cx="15" cy="13" rx="6.5" ry="5"/><ellipse cx="12" cy="10" rx="5" ry="4"/></g>
+    </symbol>
+    <symbol id="w-partly" viewBox="0 0 24 24">
+      <circle cx="9" cy="9" r="4" fill="#f2b234"/>
+      <g stroke="#f2b234" stroke-width="1.8"><line x1="9" y1="1" x2="9" y2="3.5"/><line x1="1.5" y1="9" x2="4" y2="9"/><line x1="3.5" y1="3.5" x2="5.2" y2="5.2"/></g>
+      <g fill="#8a97a3"><ellipse cx="12" cy="17" rx="6" ry="4.2"/><ellipse cx="17" cy="15" rx="5.5" ry="4.2"/></g>
+    </symbol>
+    <symbol id="w-rain" viewBox="0 0 24 24">
+      <g fill="#8a97a3"><ellipse cx="9" cy="10" rx="6" ry="4.5"/><ellipse cx="15" cy="9" rx="6" ry="4.5"/></g>
+      <g stroke="#3f7fb5" stroke-width="2"><line x1="8" y1="16" x2="7" y2="20"/><line x1="12" y1="16" x2="11" y2="20"/><line x1="16" y1="16" x2="15" y2="20"/></g>
+    </symbol>
+    <symbol id="w-storm" viewBox="0 0 24 24">
+      <g fill="#6b7780"><ellipse cx="9" cy="10" rx="6" ry="4.5"/><ellipse cx="15" cy="9" rx="6" ry="4.5"/></g>
+      <polygon points="12,14 8,20 11,20 9,24 15,17 12,17" fill="#f2b234"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="topline">
+  <span>Friday, 20 November 2026</span>
+  <span>The world&rsquo;s news, drawn</span>
+  <span>No. 325 &middot; One page</span>
 </div>
 
-<!-- LEAD: KYIV BRIDGES STRUCK -->
-<div class="lead">
-  <div class="txt">
+<div class="mast">
+  <h1>THE WORLD <span class="thin">IN ONE</span> PAGE</h1>
+  <div class="inbox"><b>IN TODAY&rsquo;S PAGE</b><br>
+    13 stories &middot; Markets &middot; Crypto &middot; Sport &middot; Weather<br>
+    Friday&rsquo;s news, drawn &mdash; no photographs</div>
+</div>
+<div class="rule-double"></div>
+
+<div class="ticker">
+  <span class="lbl">LATEST &#9656;</span>
+  <span><b>Missiles land in Poland</b> <span class="sep">&middot;</span>
+  <b>Nvidia &minus;14%</b> on SEC probe <span class="sep">&middot;</span>
+  <b>ICJ: Myanmar guilty</b> of genocide <span class="sep">&middot;</span>
+  <b>Houthi missile</b> hits Riyadh&rsquo;s tallest tower</span>
+</div>
+
+<!-- LEAD + SECOND LEAD -->
+<div class="leadrow">
+  <div class="lead">
     <div class="kicker">War in Ukraine <span class="tag">&middot; Lead story</span></div>
     <h2>KYIV BRIDGES HIT AS MISSILES LAND IN POLAND</h2>
     <p class="deck">More than 400 drones and 110 missiles strike Ukraine;
       three Kyiv bridges are hit, 6&ndash;8 killed and about 30 injured.
       Two Russian missiles fall inside NATO member Poland. Ukraine hits
       the Kerch Bridge again and frees 14 settlements in Kharkiv.</p>
-    <div class="facts">
-      <p class="fact"><b>400+ drones, 110 missiles</b> in the night barrage</p>
-      <p class="fact"><b>Poland:</b> missiles fall inside a NATO state</p>
-      <p class="fact"><b>Kerch Bridge</b> hit again &mdash; third time this week</p>
+    <div class="facts"><b>400+ drones, 110 missiles</b> &middot; <b>Kerch Bridge</b> hit again &mdash; third time this week</div>
+    <div class="art">
+      <svg viewBox="0 0 540 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <rect x="0" y="0" width="540" height="34" fill="#dfe4e8"/>
+        <circle cx="505" cy="10" r="8" fill="#f2d38a"/>
+        <g fill="#8a97a3"><rect x="14" y="20" width="18" height="14"/><rect x="38" y="14" width="15" height="20"/><rect x="420" y="16" width="16" height="18"/><rect x="442" y="22" width="20" height="12"/></g>
+        <rect x="0" y="34" width="540" height="22" fill="#7fa3bd"/>
+        <rect x="0" y="30" width="540" height="5" fill="#4a4a4a"/>
+        <rect x="70" y="35" width="9" height="14" fill="#3a3a3a"/>
+        <rect x="260" y="35" width="9" height="14" fill="#3a3a3a"/>
+        <rect x="440" y="35" width="9" height="14" fill="#3a3a3a"/>
+        <path d="M20 30 Q140 12 270 30" fill="none" stroke="#333" stroke-width="2.5"/>
+        <path d="M270 30 Q400 12 520 30" fill="none" stroke="#333" stroke-width="2.5"/>
+        <g fill="#e8a13a"><path d="M258 2 L263 10 L274 7 L268 15 L278 18 L266 20 L270 28 L261 22 L256 30 L252 20 L242 22 L248 14 L238 12 L250 10 L246 2 L254 8 Z"/></g>
+        <circle cx="257" cy="16" r="5" fill="#b91c1c"/>
+        <g stroke="#b91c1c" stroke-width="2.5"><line x1="380" y1="4" x2="400" y2="18"/><line x1="405" y1="2" x2="422" y2="14"/></g>
+        <text x="270" y="53" font-family="Liberation Sans, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#123" text-anchor="middle">KYIV &middot; THREE BRIDGES HIT IN THE NIGHT BARRAGE</text>
+      </svg>
     </div>
   </div>
-  <div class="art">
-    <svg viewBox="0 0 440 200" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="440" height="130" fill="#dfe4e8"/>
-      <circle cx="392" cy="30" r="18" fill="#f2d38a"/>
-      <!-- distant city -->
-      <g fill="#8a97a3"><rect x="18" y="86" width="26" height="44"/><rect x="52" y="70" width="22" height="60"/><rect x="82" y="94" width="30" height="36"/><rect x="330" y="78" width="24" height="52"/><rect x="362" y="92" width="28" height="38"/></g>
-      <!-- river -->
-      <rect x="0" y="130" width="440" height="70" fill="#7fa3bd"/>
-      <path d="M0 152 Q55 146 110 152 T220 152 T330 152 T440 152 L440 200 L0 200 Z" fill="#6b93b0"/>
-      <!-- bridge -->
-      <rect x="0" y="118" width="440" height="12" fill="#4a4a4a"/>
-      <rect x="60" y="130" width="14" height="42" fill="#3a3a3a"/>
-      <rect x="210" y="130" width="14" height="42" fill="#3a3a3a"/>
-      <rect x="360" y="130" width="14" height="42" fill="#3a3a3a"/>
-      <!-- bridge arch cables -->
-      <path d="M20 118 Q120 84 220 118" fill="none" stroke="#333" stroke-width="3"/>
-      <path d="M220 118 Q320 84 420 118" fill="none" stroke="#333" stroke-width="3"/>
-      <!-- explosion on bridge -->
-      <g fill="#e8a13a"><path d="M210 62 L217 76 L232 70 L224 84 L240 88 L222 92 L228 108 L214 96 L208 110 L202 94 L186 98 L194 84 L180 80 L196 76 L190 62 L202 72 Z"/></g>
-      <circle cx="208" cy="84" r="8" fill="#b91c1c"/>
-      <!-- smoke -->
-      <g fill="#9aa4ab" opacity="0.85"><circle cx="196" cy="52" r="12"/><circle cx="216" cy="44" r="14"/><circle cx="206" cy="32" r="10"/></g>
-      <!-- missile streaks -->
-      <g stroke="#b91c1c" stroke-width="3"><line x1="300" y1="18" x2="330" y2="48"/><line x1="330" y1="10" x2="356" y2="38"/></g>
-      <text x="220" y="194" font-family="Liberation Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#123" text-anchor="middle">KYIV &middot; THREE BRIDGES HIT IN THE NIGHT BARRAGE</text>
-    </svg>
-    <div class="artcap">A bridge over the Dnipro under fire; missiles also fall in Poland. Drawn illustration.</div>
-  </div>
-</div>
-
-<!-- ROW 2 -->
-<div class="row2">
-  <div class="story">
-    <div class="kicker">Justice &middot; The Hague</div>
+  <div class="second">
+    <div class="kicker">Justice <span class="tag">&middot; The Hague</span></div>
     <h2>COURT FINDS MYANMAR GUILTY OF ROHINGYA GENOCIDE</h2>
-    <p class="deck">The International Court of Justice rules Myanmar
-      committed genocide against the Rohingya &mdash; the first such
-      verdict against a state.</p>
+    <p class="deck">The ICJ rules Myanmar committed genocide against the
+      Rohingya &mdash; the first such verdict against a state. The ruling
+      was not unanimous, but it binds Myanmar to stop the killing and
+      preserve the evidence.</p>
     <div class="art">
-      <svg viewBox="0 0 440 86" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="0" width="440" height="86" fill="#e8e2d4"/>
-        <!-- courthouse -->
-        <rect x="150" y="30" width="140" height="56" fill="#c9b18a"/>
-        <polygon points="140,30 220,4 300,30" fill="#a8895a"/>
-        <g fill="#f6f1e7"><rect x="164" y="38" width="12" height="48"/><rect x="204" y="38" width="12" height="48"/><rect x="244" y="38" width="12" height="48"/></g>
-        <rect x="150" y="30" width="140" height="6" fill="#8a6a3a"/>
-        <!-- scales of justice -->
-        <g stroke="#2b2b2b" stroke-width="2.5"><line x1="60" y1="20" x2="60" y2="62"/><line x1="34" y1="24" x2="86" y2="24"/><line x1="34" y1="24" x2="26" y2="44"/><line x1="34" y1="24" x2="42" y2="44"/><line x1="86" y1="24" x2="78" y2="44"/><line x1="86" y1="24" x2="94" y2="44"/></g>
-        <path d="M22 44 Q34 56 46 44 Z" fill="#b91c1c"/><path d="M74 44 Q86 56 98 44 Z" fill="#b91c1c"/>
-        <rect x="48" y="62" width="24" height="6" fill="#2b2b2b"/>
-        <g stroke="#2b2b2b" stroke-width="2.5"><line x1="380" y1="20" x2="380" y2="62"/><line x1="354" y1="24" x2="406" y2="24"/><line x1="354" y1="24" x2="346" y2="44"/><line x1="354" y1="24" x2="362" y2="44"/><line x1="406" y1="24" x2="398" y2="44"/><line x1="406" y1="24" x2="414" y2="44"/></g>
-        <path d="M342 44 Q354 56 366 44 Z" fill="#b91c1c"/><path d="M394 44 Q406 56 418 44 Z" fill="#b91c1c"/>
-        <rect x="368" y="62" width="24" height="6" fill="#2b2b2b"/>
-        <text x="220" y="82" font-family="Liberation Sans, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#123" text-anchor="middle">THE HAGUE &middot; FIRST GENOCIDE VERDICT AGAINST A STATE</text>
-      </svg>
-    </div>
-  </div>
-  <div class="story">
-    <div class="kicker">Middle East &middot; Gulf war</div>
-    <h2>HORMUZ BLOCKADE HOLDS AS SENATE BLOCKS WAR VOTE</h2>
-    <p class="deck">The US naval blockade persists as Iran threatens Gulf
-      oil and tankers catch fire near the strait. The Senate blocks
-      the Iran war-powers vote 51&ndash;48.</p>
-    <div class="art">
-      <svg viewBox="0 0 440 86" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="0" width="440" height="86" fill="#9dbfd6"/>
-        <path d="M0 52 Q55 44 110 52 T220 52 T330 52 T440 52 L440 86 L0 86 Z" fill="#5d84a6"/>
-        <path d="M0 66 Q55 60 110 66 T220 66 T330 66 T440 66 L440 86 L0 86 Z" fill="#4a7396"/>
-        <!-- burning tanker -->
-        <rect x="30" y="46" width="140" height="16" fill="#1f2a33"/>
-        <rect x="140" y="30" width="22" height="16" fill="#1f2a33"/>
-        <rect x="56" y="38" width="34" height="8" fill="#c8c8c8"/>
-        <g fill="#e8a13a"><path d="M96 10 L101 20 L112 16 L106 26 L116 30 L104 32 L108 42 L98 34 L94 44 L90 32 L80 36 L86 26 L76 22 L90 20 L86 10 L94 16 Z"/></g>
-        <circle cx="96" cy="26" r="6" fill="#b91c1c"/>
-        <g fill="#7d8890" opacity="0.85"><circle cx="88" cy="12" r="8"/><circle cx="102" cy="6" r="9"/></g>
-        <!-- warship -->
-        <rect x="280" y="50" width="120" height="12" fill="#3a3a3a"/>
-        <rect x="330" y="36" width="8" height="14" fill="#3a3a3a"/>
-        <rect x="360" y="42" width="24" height="8" fill="#3a3a3a"/>
-        <text x="220" y="80" font-family="Liberation Sans, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#123" text-anchor="middle">STRAIT OF HORMUZ &middot; TANKERS BURNING, BLOCKADE HOLDS</text>
+      <svg viewBox="0 0 380 52" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <rect x="0" y="0" width="380" height="52" fill="#e8e2d4"/>
+        <rect x="130" y="16" width="120" height="36" fill="#c9b18a"/>
+        <polygon points="122,16 190,2 258,16" fill="#a8895a"/>
+        <g fill="#f6f1e7"><rect x="142" y="22" width="10" height="30"/><rect x="176" y="22" width="10" height="30"/><rect x="210" y="22" width="10" height="30"/></g>
+        <g stroke="#2b2b2b" stroke-width="2"><line x1="52" y1="10" x2="52" y2="38"/><line x1="30" y1="13" x2="74" y2="13"/><line x1="30" y1="13" x2="24" y2="28"/><line x1="30" y1="13" x2="36" y2="28"/><line x1="74" y1="13" x2="68" y2="28"/><line x1="74" y1="13" x2="80" y2="28"/></g>
+        <path d="M20 28 Q30 37 40 28 Z" fill="#b91c1c"/><path d="M64 28 Q74 37 84 28 Z" fill="#b91c1c"/>
+        <rect x="42" y="38" width="20" height="4" fill="#2b2b2b"/>
+        <g stroke="#2b2b2b" stroke-width="2"><line x1="328" y1="10" x2="328" y2="38"/><line x1="306" y1="13" x2="350" y2="13"/><line x1="306" y1="13" x2="300" y2="28"/><line x1="306" y1="13" x2="312" y2="28"/><line x1="350" y1="13" x2="344" y2="28"/><line x1="350" y1="13" x2="356" y2="28"/></g>
+        <path d="M296 28 Q306 37 316 28 Z" fill="#b91c1c"/><path d="M340 28 Q350 37 360 28 Z" fill="#b91c1c"/>
+        <rect x="318" y="38" width="20" height="4" fill="#2b2b2b"/>
       </svg>
     </div>
   </div>
 </div>
 
-<!-- ROW 3 -->
-<div class="row3">
-  <div class="story">
-    <div class="kicker">Diplomacy &middot; Summit</div>
-    <h2>TRUMP, XI AND PUTIN SIGN PEACE DECLARATION</h2>
-    <p class="deck">After Shenzhen, the three leaders issue a joint peace
-      declaration. The US and China agree humans must oversee
-      military AI. Trump keeps China to older AI chips.</p>
-    <div class="art">
-      <svg viewBox="0 0 280 64" xmlns="http://www.w3.org/2000/svg">
-        <!-- document -->
-        <rect x="86" y="6" width="108" height="52" fill="#fff" stroke="#999" stroke-width="1.5"/>
-        <g stroke="#333" stroke-width="2"><line x1="98" y1="18" x2="182" y2="18"/><line x1="98" y1="26" x2="182" y2="26"/><line x1="98" y1="34" x2="160" y2="34"/></g>
-        <circle cx="168" cy="46" r="9" fill="#b91c1c"/>
-        <text x="168" y="50" font-family="Liberation Sans, Arial, sans-serif" font-size="10" font-weight="900" fill="#fff" text-anchor="middle">OK</text>
-        <!-- mini flags -->
-        <rect x="8" y="14" width="56" height="28" fill="#fff" stroke="#999" stroke-width="1"/><g fill="#b91c1c"><rect x="8" y="14" width="56" height="4"/><rect x="8" y="22" width="56" height="4"/><rect x="8" y="30" width="56" height="4"/><rect x="8" y="38" width="56" height="4"/></g><rect x="8" y="14" width="22" height="15" fill="#1e3a5f"/>
-        <rect x="216" y="14" width="56" height="28" fill="#de2910" stroke="#999" stroke-width="1"/><path d="M226 18 L228 24 L234 24 L229 27.5 L231 33 L226 29.5 L221 33 L223 27.5 L218 24 L224 24 Z" fill="#ffde00"/>
-        <text x="140" y="62" font-family="Liberation Sans, Arial, sans-serif" font-size="11" font-weight="700" fill="#123" text-anchor="middle">SHENZHEN &middot; JOINT DECLARATION</text>
-      </svg>
+<!-- GRID ROW 1 -->
+<div class="grid">
+  <div class="grow">
+    <div class="cell">
+      <div class="kicker">Middle East <span class="tag">&middot; Gulf war</span></div>
+      <h2>HORMUZ BLOCKADE HOLDS AS SENATE BLOCKS WAR VOTE</h2>
+      <p class="deck">The US blockade persists as Iran threatens Gulf oil
+        and tankers catch fire near the strait. The Senate blocks the
+        war-powers vote 51&ndash;48.</p>
+      <div class="art">
+        <svg viewBox="0 0 300 26" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <rect x="0" y="0" width="300" height="26" fill="#9dbfd6"/>
+          <path d="M0 16 Q38 12 75 16 T150 16 T225 16 T300 16 L300 26 L0 26 Z" fill="#5d84a6"/>
+          <rect x="20" y="12" width="110" height="7" fill="#1f2a33"/>
+          <rect x="104" y="5" width="14" height="7" fill="#1f2a33"/>
+          <g fill="#e8a13a"><path d="M66 0 L69 5 L76 3 L72 8 L78 10 L70 11 L72 16 L66 12 L63 17 L61 11 L55 13 L59 8 L53 6 L61 5 L58 0 L64 3 Z"/></g>
+          <rect x="200" y="13" width="80" height="6" fill="#3a3a3a"/>
+          <rect x="232" y="7" width="5" height="6" fill="#3a3a3a"/>
+        </svg>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="kicker">Diplomacy <span class="tag">&middot; Summit</span></div>
+      <h2>TRUMP, XI AND PUTIN SIGN PEACE DECLARATION</h2>
+      <p class="deck">After Shenzhen, the three leaders issue a joint peace
+        declaration. The US and China agree humans must oversee military
+        AI. Trump keeps China to older AI chips.</p>
+    </div>
+    <div class="cell">
+      <div class="kicker">Climate <span class="tag">&middot; COP31</span></div>
+      <h2>ANTALYA TALKS STALL AS ACTIVISTS DENOUNCE DRAFT</h2>
+      <p class="deck">Fossil-fuel talks stall at COP31 in Antalya and
+        activists denounce the draft deal as too weak to hold the line
+        on warming.</p>
     </div>
   </div>
-  <div class="story">
-    <div class="kicker">Climate &middot; COP31</div>
-    <h2>ANTALYA TALKS STALL AS ACTIVISTS DENOUNCE DRAFT</h2>
-    <p class="deck">Fossil-fuel talks stall at COP31 in Antalya and
-      activists denounce the draft deal as too weak to hold the
-      line on warming.</p>
-    <div class="art">
-      <svg viewBox="0 0 280 64" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="0" width="280" height="64" fill="#e8e2d4"/>
-        <!-- sun -->
-        <circle cx="246" cy="14" r="11" fill="#f2d38a"/>
-        <!-- factory -->
-        <rect x="16" y="28" width="110" height="26" fill="#8a97a3"/>
-        <rect x="136" y="20" width="14" height="34" fill="#6b7780"/>
-        <rect x="158" y="14" width="14" height="40" fill="#6b7780"/>
-        <g fill="#7d8890"><circle cx="142" cy="12" r="6"/><circle cx="152" cy="6" r="7"/><circle cx="164" cy="8" r="6"/></g>
-        <g fill="#f6f1e7"><rect x="28" y="36" width="12" height="10"/><rect x="50" y="36" width="12" height="10"/><rect x="72" y="36" width="12" height="10"/><rect x="94" y="36" width="12" height="10"/></g>
-        <text x="196" y="46" font-family="Liberation Sans, Arial, sans-serif" font-size="15" font-weight="900" fill="#b91c1c">STALLED</text>
-        <text x="140" y="62" font-family="Liberation Sans, Arial, sans-serif" font-size="11" font-weight="700" fill="#123" text-anchor="middle">ANTALYA &middot; COP31</text>
-      </svg>
+  <!-- GRID ROW 2 -->
+  <div class="grow">
+    <div class="cell">
+      <div class="kicker">Business <span class="tag">&middot; Markets</span></div>
+      <h2>ANTHROPIC DEBUTS UP 17% IN BIGGEST IPO EVER</h2>
+      <p class="deck">Anthropic closes at <span class="bignum">$97.17</span>,
+        17% above its $83 IPO price, raising $81.3bn. US stocks fall a
+        sixth straight day.</p>
+      <div class="art">
+        <svg viewBox="0 0 300 26" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <polyline points="8,22 60,18 110,16 160,10 210,7 288,2" fill="none" stroke="#1e7d32" stroke-width="3.5"/>
+          <polygon points="288,2 274,3 282,11" fill="#1e7d32"/>
+          <circle cx="8" cy="22" r="3" fill="#1e7d32"/><circle cx="160" cy="10" r="3" fill="#1e7d32"/>
+          <text x="8" y="10" font-family="Liberation Sans, Arial, sans-serif" font-size="11" font-weight="900" fill="#141414">$97.17</text>
+          <text x="180" y="24" font-family="Liberation Sans, Arial, sans-serif" font-size="10" font-weight="900" fill="#b91c1c">+17% &middot; NASDAQ: ANT</text>
+        </svg>
+      </div>
     </div>
-  </div>
-  <div class="story">
-    <div class="kicker">Business &middot; Markets</div>
-    <h2>ANTHROPIC DEBUTS UP 17% IN BIGGEST IPO EVER</h2>
-    <p class="deck">Anthropic closes at <span class="bignum">$97.17</span>,
-      17% above its $83 IPO price, raising $81.3bn. US stocks fall
-      a sixth straight day; Google launches Gemini 4 Neon.</p>
-    <div class="art">
-      <svg viewBox="0 0 280 64" xmlns="http://www.w3.org/2000/svg">
-        <polyline points="10,54 60,46 110,40 160,26 210,18 262,6" fill="none" stroke="#1e7d32" stroke-width="4"/>
-        <polygon points="262,6 246,8 258,20" fill="#1e7d32"/>
-        <circle cx="10" cy="54" r="4" fill="#1e7d32"/><circle cx="110" cy="40" r="4" fill="#1e7d32"/><circle cx="210" cy="18" r="4" fill="#1e7d32"/>
-        <text x="20" y="24" font-family="Liberation Sans, Arial, sans-serif" font-size="24" font-weight="900" fill="#141414">$97.17</text>
-        <text x="150" y="58" font-family="Liberation Sans, Arial, sans-serif" font-size="13" font-weight="900" fill="#b91c1c">+17% &middot; NASDAQ: ANT</text>
-      </svg>
+    <div class="cell">
+      <div class="kicker">Washington <span class="tag">&middot; White House</span></div>
+      <h2>TRUMP SACKS CYBER CHIEF AFTER TECH OUTAGES</h2>
+      <p class="deck">The president fires the nation&rsquo;s cyber director
+        days after a wave of outages hit government systems &mdash; the
+        latest shake-up of the security team.</p>
+    </div>
+    <div class="cell">
+      <div class="kicker">Sport <span class="tag">&middot; Baseball</span></div>
+      <h2>PETE ROSE PARDONED, DECADES AFTER THE BAN</h2>
+      <p class="deck">Trump posthumously pardons the banned hits king,
+        reopening the debate over Rose&rsquo;s place in the Hall of Fame.</p>
     </div>
   </div>
 </div>
 
-<!-- ALSO TODAY -->
-<div class="also">
-  <h3>ALSO TODAY</h3>
-  <p><b>Trump sacks cyber chief</b> after tech outages
-  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Pete Rose</b> pardoned posthumously
-  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>GTA 6 sales</b> top $2.3bn
+<!-- ALSO IN BRIEF -->
+<div class="strip">
+  <h3>ALSO IN BRIEF</h3>
+  <p><b>GTA 6 sales</b> top $2.3bn
   <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Hackers leak data</b> on 16,000 Visa, Mastercard and JPMorgan customers
-  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Estonia</b> to close Russia border from 1 Dec
-  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Houthi missile</b> damages Riyadh&rsquo;s tallest tower</p>
+  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Estonia</b> to shut Russia border from 1 Dec
+  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Hungary</b> lifts veto on Ukraine EU talks
+  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Google</b> launches Gemini 4 Neon</p>
+</div>
+
+<!-- SPORT -->
+<div class="strip">
+  <h3>SPORT</h3>
+  <p><b>Knicks 102&ndash;99</b> Timberwolves &mdash; third straight win
+  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Grizzlies 126&ndash;98</b> Warriors &mdash; fifth straight
+  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Nuggets 133&ndash;124</b> Rockets &mdash; Durant 16, &#350;eng&uuml;n triple-double
+  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Shelton</b> beats Jodar 7&ndash;6(8), 7&ndash;5, into ATP Finals last four
+  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Barcelona 6&ndash;0</b> Servette &middot; <b>Lyonnes 2&ndash;0</b> Arsenal
+  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Pakistan</b> beat Sri Lanka by 8 wickets &mdash; first Test series win in two years
+  <span class="dot">&nbsp;&middot;&nbsp;</span> <b>Lightning 3&ndash;1</b> Oilers &mdash; McDavid&rsquo;s 23-game point streak ends</p>
+</div>
+
+<!-- MARKETS / CRYPTO / WEATHER BAND -->
+<div class="band">
+  <div class="col">
+    <h3>MARKETS <span class="tag">&middot; FRIDAY CLOSE</span></h3>
+    <div class="mgrid">
+      <div class="mrow"><span class="nm">S&amp;P 500</span><span class="vl down">6,910.39 &minus;3.70%</span></div>
+      <div class="mrow"><span class="nm">Nasdaq</span><span class="vl down">22,617.73 &minus;5.28%</span></div>
+      <div class="mrow"><span class="nm">Dow</span><span class="vl down">48,147.33 &minus;1.93%</span></div>
+      <div class="mrow"><span class="nm">Russell 2000</span><span class="vl down">2,581.79 &minus;2.76%</span></div>
+      <div class="mrow"><span class="nm">FTSE 100</span><span class="vl down">10,346.34 &minus;1.02%</span></div>
+      <div class="mrow"><span class="nm">DAX</span><span class="vl down">24,802.78 &minus;2.60%</span></div>
+      <div class="mrow"><span class="nm">CAC 40</span><span class="vl down">7,927.75 &minus;1.89%</span></div>
+      <div class="mrow"><span class="nm">Nikkei 225</span><span class="vl down">56,436.65 &minus;5.06%</span></div>
+      <div class="mrow"><span class="nm">Shanghai</span><span class="vl down">3,533.79 &minus;1.22%</span></div>
+      <div class="mrow"><span class="nm">Hang Seng</span><span class="vl down">22,410.80 &minus;1.89%</span></div>
+      <div class="mrow"><span class="nm">BIST 100</span><span class="vl down">11,131.32 &minus;2.36%</span></div>
+      <div class="mrow"><span class="nm">Nifty 50</span><span class="vl up">25,800.60 +1.12%</span></div>
+    </div>
+    <p class="mnote">Gold <b class="down">$3,515.40 &minus;4.62%</b> &middot; Silver <b class="down">$41.07 &minus;7.41%</b> &middot; Brent <b class="up">$92.57 +0.64%</b> &middot; WTI <b class="up">$83.98 +0.93%</b> &middot; VIX <b>35.89</b></p>
+    <p class="mnote"><b>Week:</b> worst in 18 months &mdash; S&amp;P &minus;8.61%, Nasdaq &minus;10.02%, seventh straight loss.</p>
+  </div>
+  <div class="col">
+    <h3>CRYPTO <span class="tag">&middot; FRIDAY CLOSE</span></h3>
+    <div class="mrow"><span class="nm">Bitcoin</span><span class="vl down">$58,810 &nbsp;&minus;5.0%</span></div>
+    <div class="mrow"><span class="nm">Ethereum</span><span class="vl down">$1,620 &nbsp;&minus;7.7%</span></div>
+    <div class="mrow"><span class="nm">Solana</span><span class="vl down">$68.71 &nbsp;&minus;6.0%</span></div>
+    <div class="mrow"><span class="nm">XRP</span><span class="vl down">~$0.90</span></div>
+    <div class="mrow"><span class="nm">BNB</span><span class="vl down">$535.78 &nbsp;&minus;7.9%</span></div>
+    <p class="mnote"><b>BTC broke below $60,000</b> &mdash; range $57,934&ndash;$62,433, &minus;15.1% on the week.</p>
+    <div class="spark">
+      <svg viewBox="0 0 280 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <polyline points="4,3 50,7 95,5 140,12 185,16 230,14 276,22" fill="none" stroke="#b91c1c" stroke-width="3"/>
+        <polygon points="276,22 262,18 272,10" fill="#b91c1c"/>
+        <circle cx="4" cy="3" r="3" fill="#b91c1c"/><circle cx="140" cy="12" r="3" fill="#b91c1c"/>
+        <text x="6" y="22" font-family="Liberation Sans, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#555">BTC &middot; ONE WEEK</text>
+      </svg>
+    </div>
+  </div>
+  <div class="col">
+    <h3>WORLD WEATHER <span class="tag">&middot; SAT 21 NOV</span></h3>
+    <div class="wx">
+      <div class="cell"><svg><use href="#w-partly"/></svg><span><b>London</b> 9&deg;/5&deg;</span></div>
+      <div class="cell"><svg><use href="#w-partly"/></svg><span><b>New York</b> 19&deg;/12&deg;</span></div>
+      <div class="cell"><svg><use href="#w-storm"/></svg><span><b>Istanbul</b> 18&deg;/13&deg;</span></div>
+      <div class="cell"><svg><use href="#w-sun"/></svg><span><b>Tokyo</b> 14&deg;/5&deg;</span></div>
+      <div class="cell"><svg><use href="#w-sun"/></svg><span><b>Dubai</b> 31&deg;/22&deg;</span></div>
+      <div class="cell"><svg><use href="#w-cloud"/></svg><span><b>Kyiv</b> 6&deg;/0&deg;</span></div>
+      <div class="cell"><svg><use href="#w-rain"/></svg><span><b>Moscow</b> 5&deg;/0&deg;</span></div>
+      <div class="cell"><svg><use href="#w-cloud"/></svg><span><b>Paris</b> 11&deg;/7&deg;</span></div>
+      <div class="cell"><svg><use href="#w-rain"/></svg><span><b>Berlin</b> 6&deg;/0&deg;</span></div>
+      <div class="cell"><svg><use href="#w-rain"/></svg><span><b>Madrid</b> 14&deg;/8&deg;</span></div>
+      <div class="cell"><svg><use href="#w-sun"/></svg><span><b>Cairo</b> 29&deg;/17&deg;</span></div>
+      <div class="cell"><svg><use href="#w-sun"/></svg><span><b>Delhi</b> 26&deg;/14&deg;</span></div>
+    </div>
+    <p class="mnote">London, New York partly cloudy &middot; Istanbul thunderstorms &middot; Tokyo clear &middot; Dubai, Cairo, Delhi sunny &middot; Kyiv overcast &middot; Moscow, Berlin, Madrid rain &middot; Paris cloudy.</p>
+  </div>
 </div>
 
 <div class="foot">
